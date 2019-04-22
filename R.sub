@@ -15,6 +15,6 @@ Input      = in$(Process).r
 Output     = Rout_$(Cluster)_$(Process).txt
 Error      = Rerr_$(Cluster)_$(Process).txt
 # Solicitar 1 core y 1024M RAM
-request_cpus = 2
-request_memory = 1024
+#request_cpus = 1
+#request_memory = 1024
 Queue 4
