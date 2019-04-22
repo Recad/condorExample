@@ -1,0 +1,20 @@
+# Running R from a tgz.
+##
+Universe   = vanilla
+Priority   = 1000
+
+should_transfer_files = Yes
+when_to_transfer_output = ON_EXIT_OR_EVICT
+transfer_input_files=r330.tgz,nums.csv
+
+Executable = runR.bash
+Arguments  = in$(Process).r
+
+Log        = Rlog_$(Cluster).txt
+Input      = in$(Process).r
+Output     = Rout_$(Cluster)_$(Process).txt
+Error      = Rerr_$(Cluster)_$(Process).txt
+# Solicitar 1 core y 1024M RAM
+request_cpus = 2
+request_memory = 1024
+Queue 4
