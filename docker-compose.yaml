@@ -1,0 +1,47 @@
+version: '3'
+services:
+ master:
+  image: recad/master-r 
+  ports:
+   - "9618:9618"
+  hostname: master
+  volumes:
+   - ./condor1:/condor1
+  command: bash /etc/condor_start.bash
+    
+ start1: 
+  image: edza78/htstartd8412 
+  ports: 
+   - "9620:9620" 
+  hostname: start1 
+  environment: 
+   - shared_port=9620 
+   - master=master 
+  command: bash /etc/condor_start.bash 
+  depends_on: 
+   - master
+    
+ start2: 
+  image: edza78/htstartd8412 
+  ports: 
+   - "9621:9621" 
+  hostname: start2 
+  environment: 
+   - shared_port=9621 
+   - master=master 
+  command: bash /etc/condor_start.bash 
+  depends_on: 
+   - master
+    
+ start3: 
+  image: edza78/htstartd8412 
+  ports: 
+   - "9622:9622" 
+  hostname: start3 
+  environment: 
+   - shared_port=9622 
+   - master=master 
+  command: bash /etc/condor_start.bash 
+  depends_on: 
+   - master
+    
